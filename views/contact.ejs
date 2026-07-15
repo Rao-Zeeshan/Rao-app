@@ -1,0 +1,25 @@
+<section class="static-page container contact-page">
+  <h1>Contact Us</h1>
+  <p>Questions, feedback, or want to contribute an article? Reach out any time.</p>
+
+  <div class="contact-email-box">
+    📧 <a href="mailto:<%= contactEmail %>"><%= contactEmail %></a>
+  </div>
+
+  <% if (submitted) { %>
+    <div class="alert alert-success">Thanks for reaching out! We'll get back to you soon.</div>
+  <% } %>
+
+  <form action="/contact" method="POST" class="article-form contact-form">
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name" placeholder="Your name" required />
+
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" placeholder="you@example.com" required />
+
+    <label for="message">Message</label>
+    <textarea id="message" name="message" rows="6" placeholder="How can we help?" required></textarea>
+
+    <button type="submit" class="btn-submit">Send Message</button>
+  </form>
+</section>

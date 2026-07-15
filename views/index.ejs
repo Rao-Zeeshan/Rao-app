@@ -1,0 +1,85 @@
+<section class="hero">
+  <div class="container">
+    <h1 class="hero-title">Welcome to <span class="highlight">ZeeshanBlog</span></h1>
+    <p class="hero-subtitle">Dive into a world of insightful articles covering technology, creativity, lifestyle, and beyond.</p>
+
+    <div class="stats">
+      <div class="stat">
+        <span class="stat-number"><%= stats.articles %></span>
+        <span class="stat-label">Articles</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number"><%= stats.categories %></span>
+        <span class="stat-label">Categories</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number"><%= stats.authors %></span>
+        <span class="stat-label">Authors</span>
+      </div>
+    </div>
+
+    <div class="categories">
+      <a href="/" class="cat-pill cat-all <%= activeCategory === 'All' ? 'active' : '' %>">
+        <span class="cat-icon">▦</span> All
+      </a>
+      <% const icons = { Apps: "▢", Art: "🖌", Books: "📘", Health: "♥", History: "🕐", Movies: "🎬", Travel: "🌐", Web: "⊝", Other: "⋯" }; %>
+      <% categories.forEach(function(cat) { %>
+        <a href="/?category=<%= cat %>" class="cat-pill cat-<%= cat.toLowerCase() %> <%= activeCategory === cat ? 'active' : '' %>">
+          <span class="cat-icon"><%= icons[cat] || "•" %></span> <%= cat %>
+        </a>
+      <% }); %>
+    </div>
+  </div>
+</section>
+
+<% if (query) { %>
+  <div class="container search-notice">
+    <p>Showing results for "<strong><%= query %></strong>" (<%= articles.length %> found)</p>
+  </div>
+<% } %>
+
+<% if (!query && activeCategory === 'All' && featured) { %>
+<section class="featured container">
+  <a href="/articles/<%= featured.id %>" class="featured-card">
+    <div class="featured-image" style="background-image:url('<%= featured.image %>')"></div>
+    <div class="featured-content">
+      <span class="badge-featured">★ FEATURED</span>
+      <h2><%= featured.title %></h2>
+      <p><%= featured.excerpt %></p>
+      <div class="meta">
+        <span><%= featured.author %></span>
+        <span>&bull;</span>
+        <span><%= featured.date %></span>
+        <span class="cat-tag"><%= featured.category %></span>
+      </div>
+    </div>
+  </a>
+</section>
+<% } %>
+
+<section class="articles container">
+  <h2 class="section-title"><%= query ? "Search Results" : (activeCategory === 'All' ? "Latest Articles" : activeCategory + " Articles") %></h2>
+
+  <% if (articles.length === 0) { %>
+    <p class="empty-state">No articles found. Try a different search or category.</p>
+  <% } else { %>
+  <div class="article-grid">
+    <% articles.forEach(function(a) { %>
+      <a href="/articles/<%= a.id %>" class="article-card">
+        <div class="article-image" style="background-image:url('<%= a.image %>')">
+          <span class="cat-tag"><%= a.category %></span>
+        </div>
+        <div class="article-body">
+          <h3><%= a.title %></h3>
+          <p><%= a.excerpt %></p>
+          <div class="meta">
+            <span><%= a.author %></span>
+            <span>&bull;</span>
+            <span><%= a.date %></span>
+          </div>
+        </div>
+      </a>
+    <% }); %>
+  </div>
+  <% } %>
+</section>

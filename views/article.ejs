@@ -1,0 +1,36 @@
+<article class="article-detail container">
+  <a href="/" class="back-link">&larr; Back to all articles</a>
+
+  <span class="cat-tag"><%= article.category %></span>
+  <h1><%= article.title %></h1>
+  <div class="meta">
+    <span>By <strong><%= article.author %></strong></span>
+    <span>&bull;</span>
+    <span><%= article.date %></span>
+  </div>
+
+  <div class="article-hero-image" style="background-image:url('<%= article.image %>')"></div>
+
+  <div class="article-content">
+    <p><%= article.content %></p>
+  </div>
+</article>
+
+<% if (related && related.length) { %>
+<section class="related container">
+  <h2 class="section-title">Related Articles</h2>
+  <div class="article-grid">
+    <% related.forEach(function(a) { %>
+      <a href="/articles/<%= a.id %>" class="article-card">
+        <div class="article-image" style="background-image:url('<%= a.image %>')">
+          <span class="cat-tag"><%= a.category %></span>
+        </div>
+        <div class="article-body">
+          <h3><%= a.title %></h3>
+          <p><%= a.excerpt %></p>
+        </div>
+      </a>
+    <% }); %>
+  </div>
+</section>
+<% } %>
