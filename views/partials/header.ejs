@@ -1,0 +1,29 @@
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="/" class="brand">
+      <span class="brand-icon">✎</span>
+      <span class="brand-text"><span class="brand-zeeshan">Zeeshan</span><span class="brand-blog">Blog</span></span>
+    </a>
+
+    <nav class="main-nav">
+      <a href="/" class="<%= currentPath === '/' ? 'active' : '' %>">Home</a>
+      <a href="/about" class="<%= currentPath === '/about' ? 'active' : '' %>">About</a>
+      <a href="/contact" class="<%= currentPath === '/contact' ? 'active' : '' %>">Contact</a>
+      <a href="/articles/create" class="btn-create">Create Article</a>
+    </nav>
+
+    <form class="header-search" action="/" method="GET">
+      <input type="text" name="q" placeholder="Search articles..." aria-label="Search articles" />
+      <button type="submit" aria-label="Search">🔍</button>
+    </form>
+
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">☰</button>
+  </div>
+
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="/">Home</a>
+    <a href="/about">About</a>
+    <a href="/contact">Contact</a>
+    <a href="/articles/create" class="btn-create">Create Article</a>
+  </nav>
+</header>
